@@ -1207,6 +1207,42 @@ trait SponsoredProductsRequests
     }
 
     /**
+     * POST https://advertising-api.amazon.com/sptargets/products/recommendations
+     * @see https://advertising.amazon.com/API/docs/en-US/sponsored-products/3-0/openapi/prod#/Product%20Recommendation%20Service/getProductRecommendations
+     *
+     * @param array $data [count => int(1-50), locale => "en_US", asAsins: string[], cursor: string]
+     * @return array
+     * @throws Exception
+     */
+    public function generateTargetsProductsThemeRecommendations(array $data): array
+    {
+        $this->apiVersion = "";
+        $headers = [
+            'Content-Type' => 'application/vnd.spproductrecommendation.v3+json',
+            'Accept' => 'application/vnd.spproductrecommendationresponse.themes.v3+json',
+        ];
+        return $this->operation("sp/targets/products/recommendations", $data, 'POST', $headers);
+    }
+
+    /**
+     * POST https://advertising-api.amazon.com/sptargets/products/recommendations
+     * @see https://advertising.amazon.com/API/docs/en-US/sponsored-products/3-0/openapi/prod#/Product%20Recommendation%20Service/getProductRecommendations
+     *
+     * @param array $data [pageSize => int(1-50), pageNumber => int, asins: string[]]
+     * @return array
+     * @throws Exception
+     */
+    public function generateTargetsProductsAsinRecommendations(array $data): array
+    {
+        $this->apiVersion = "";
+        $headers = [
+            'Content-Type' => 'application/vnd.spproductrecommendation.v3+json',
+            'Accept' => 'application/vnd.spproductrecommendationresponse.asins.v3+json',
+        ];
+        return $this->operation("sp/targets/products/recommendations", $data, 'POST', $headers);
+    }
+
+    /**
      * GET https://advertising-api.amazon.com/v2/sp/targets/{targetId}
      * @see https://advertising.amazon.com/API/docs/v2/reference/product_attribute_targeting#getTargetingClause
      *

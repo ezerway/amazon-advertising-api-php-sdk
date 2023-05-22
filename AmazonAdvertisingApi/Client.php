@@ -227,10 +227,11 @@ class Client
      * @param string $interface
      * @param array|null $params
      * @param string $method
+     * @param array $httpHeaders
      * @return array
      * @throws Exception
      */
-    private function operation(string $interface, ?array $params = [], string $method = "GET")
+    private function operation(string $interface, ?array $params = [], string $method = "GET", array $httpHeaders = [])
     {
         $headers = array(
             "Authorization: bearer {$this->config["accessToken"]}",
@@ -243,7 +244,7 @@ class Client
             array_push($headers, "Amazon-Advertising-API-Scope: {$this->profileId}");
         }
 
-        $this->headers = $headers;
+        $this->headers = array_merge($headers, $httpHeaders);
 
         $request = new CurlRequest();
         $this->endpoint = trim($this->endpoint, "/");
