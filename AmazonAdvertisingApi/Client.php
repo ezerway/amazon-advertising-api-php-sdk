@@ -279,7 +279,7 @@ class Client
         }
 
         $request->setOption(CURLOPT_URL, $url);
-        $request->setOption(CURLOPT_HTTPHEADER, $headers);
+        $request->setOption(CURLOPT_HTTPHEADER, $this->headers);
         $request->setOption(CURLOPT_USERAGENT, $this->userAgent);
         $request->setOption(CURLOPT_CUSTOMREQUEST, strtoupper($method));
         return $this->executeRequest($request);
