@@ -233,18 +233,22 @@ class Client
      */
     private function operation(string $interface, ?array $params = [], string $method = "GET", array $httpHeaders = [])
     {
-        $headers = array(
-            "Authorization: bearer {$this->config["accessToken"]}",
-            "Content-Type: application/json",
-            "User-Agent: {$this->userAgent}",
-            "Amazon-Advertising-API-ClientId: {$this->config["clientId"]}"
-        );
+        $headers = [
+            'Authorization' => "bearer {$this->config["accessToken"]}",
+            'Content-Type' => 'application/json',
+            'User-Agent' => $this->userAgent,
+            'Amazon-Advertising-API-ClientId' => $this->config["clientId"],
+        ];
 
         if (!is_null($this->profileId)) {
-            array_push($headers, "Amazon-Advertising-API-Scope: {$this->profileId}");
+            $headers['Amazon-Advertising-API-Scope'] = $this->profileId;
         }
 
-        $this->headers = array_merge($headers, $httpHeaders);
+        $mergedHeaders = array_merge($headers, $httpHeaders);
+        $this->headers = [];
+        foreach ($mergedHeaders as $header => $headerValue) {
+            $this->headers[] = "{$header}: {$headerValue}";
+        }
 
         $request = new CurlRequest();
         $this->endpoint = trim($this->endpoint, "/");
