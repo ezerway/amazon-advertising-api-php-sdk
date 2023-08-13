@@ -146,7 +146,7 @@ class Client
      * @param bool $gunzip
      * @return array
      */
-    private function download($location, $gunzip = false)
+    public function download($location, $gunzip = false)
     {
         $headers = array();
 
@@ -365,7 +365,7 @@ class Client
                     }
                     break;
                 case "clientSecret":
-                    if (!preg_match("/^[a-z0-9]{64}$/i", $v)) {
+                    if (!preg_match("/^[a-z0-9]{64}$/i", $v) && !preg_match("/^amzn1\.oa2-cs\.v1\.[a-z0-9]{64}$/i", $v)) {
                         $this->logAndThrow("Invalid parameter value for clientSecret.");
                     }
                     break;

@@ -1092,6 +1092,20 @@ trait SponsoredProductsRequests
     }
 
     /**
+     * @param null|array $data
+     * @return array
+     * @throws Exception
+     */
+    public function requestReportV3(?array $data = null)
+    {
+        $oldEndpoint = $this->endpoint;
+        $this->endpoint = str_replace("/{$this->apiVersion}", "", $oldEndpoint);
+        $req = $this->operation("reporting/reports", $data, "POST");
+        $this->endpoint = $oldEndpoint;
+        return $req;
+    }
+
+    /**
      * @param array|null $data
      * @return string
      * @throws Exception
@@ -1126,6 +1140,20 @@ trait SponsoredProductsRequests
                 return $this->download($json["location"]);
             }
         }
+        return $req;
+    }
+
+    /**
+     * @param $reportId
+     * @return array
+     * @throws Exception
+     */
+    public function getReportV3($reportId)
+    {
+        $oldEndpoint = $this->endpoint;
+        $this->endpoint = str_replace("/{$this->apiVersion}", "", $oldEndpoint);
+        $req = $this->operation("reporting/reports/{$reportId}");
+        $this->endpoint = $oldEndpoint;
         return $req;
     }
 
