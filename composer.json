@@ -1,5 +1,5 @@
 {
-  "name": "kubrey/amazon-advertising-api-php-sdk",
+  "name": "ezerway/amazon-advertising-api-php-sdk",
   "type": "library",
   "description": "Amazon Advertising API Client Library",
   "keywords": [
@@ -14,8 +14,8 @@
   "license": "Apache-2.0",
   "authors": [
     {
-      "name": "SSPA AIR Dev",
-      "email": "nobody@amazon.com"
+      "name": "ezerway",
+      "email": "live.ezerway@gmail.com"
     }
   ],
   "autoload": {
@@ -33,7 +33,7 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/kubrey/amazon-advertising-api-php-sdk"
+      "url": "https://github.com/ezerway/amazon-advertising-api-php-sdk"
     }
   ]
 }
