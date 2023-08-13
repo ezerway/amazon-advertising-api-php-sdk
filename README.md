@@ -140,6 +140,8 @@ $client->profileId = "1234567890";
 * Reports
     * [requestReport](#requestreport)
     * [getReport](#getreport)
+    * [requestReportV3](#requestreportv3)
+    * [getReportV3](#getreportv3)
 * Bid Recommendations
     * [getAdGroupBidRecommendations](#getadgroupbidrecommendations)
     * [getKeywordBidRecommendations](#getkeywordbidrecommendations)
@@ -1036,6 +1038,52 @@ $client->getReport("amzn1.clicksAPI.v1.m1.573A0808.32908def-66a1-4ce2-8f12-780dc
     "impressions": 48903
   }
 ]
+```
+
+---
+#### requestReportV3
+> Request a customized performance report for all entities of a single type which have performance data to report.
+
+```PHP
+$client->requestReportV3(
+    json_encode('{
+    "name":"SP purchased product report 8/13-8/13",
+    "startDate":"2023-08-13",
+    "endDate":"2023-08-13",
+    "configuration":{
+        "adProduct":"SPONSORED_PRODUCTS",
+        "groupBy":["asin"],
+        "columns":["purchasedAsin","advertisedAsin","adGroupName","campaignName","sales14d","campaignId","adGroupId","keywordId","keywordType","keyword"],
+        "reportTypeId":"spPurchasedProduct",
+        "timeUnit":"SUMMARY",
+        "format":"GZIP_JSON"
+    }
+}'));
+```
+>
+```
+{
+  "reportId": "4d23db55-3837-4599-8b61-7dc87a6b1ffb",
+  "recordType": "campaign",
+  "status": "IN_PROGRESS",
+  "statusDetails": "Report is submitted"
+}
+```
+
+---
+#### getReportV3
+> Retrieve a previously requested report.
+
+```PHP
+$client->getReportV3("4d23db55-3837-4599-8b61-7dc87a6b1ffb");
+```
+> Sandbox will return dummy data.
+```
+{
+  "reportId": "4d23db55-3837-4599-8b61-7dc87a6b1ffb",
+  "status": "COMPLETED",
+  "url": "https://offline-report-storage-us-east-1-prod.s3.amazonaws.com"
+}
 ```
 
 ---
