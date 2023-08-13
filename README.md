@@ -8,7 +8,7 @@ This repository has been deprecated and will no longer receive updates.
 
 ## Requirements
 
-PHP >= 5.3.0<br/>
+PHP >= 7.0.0<br/>
 cURL >= 7.18
 
 ## Documentation
